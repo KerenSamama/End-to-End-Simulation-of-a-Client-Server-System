@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>A Single Page Application</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="spa.css">
+    <!--  -->
+</head>
+
+<body>
+    <main>
+        <div class="page active" id="logIn"><!--home=logIn-->
+            <h1>LogIn</h1>
+            <section class="container">
+                <div class="login">
+
+                    
+                    <form id="form">
+                        <div class="username" id="username">
+                            <input type="text" placeholder=" Username" required>
+                            <i class='bx bxs-user'></i>
+
+                        </div>
+                        <div class="password" id="password">
+                            <input type="password" placeholder=" Password">
+                            <i class='bx bxs-lock-alt'></i>
+                        </div>
+                        <div class="remember-forgot">
+                            <label><input id="rememberMe" type="checkbox">Remember Me</label>
+                        </div>
+                        <div class="forgot-pass">
+                            <a href="#">Forgot password?</a>
+                        </div>
+                        <div class="button_form">
+                            <button id="button_form_id" type="submit">Login</button>
+                        </div>
+
+                    </form>
+                    <div class="signup"><!-- must change the name-->
+                        <span>Don't have an account? <a href="#" data-target="signUp"
+                                class="link signup-link">Signup</a></span>
+                        <!--nav-link=link-->
+                    </div>
+                </div>
+
+            </section>
+            <!--
+            <ol>
+                <li><a href="#" data-target="home" class="nav-link">HOME</a></li>
+                <li><a href="#" data-target="list" class="nav-link">LIST</a></li>
+                <li><a href="#" data-target="detail" class="nav-link">DETAIL</a></li>
+            </ol>
+            -->
+        </div>
+
+        <div class="page" id="signUp"><!--list=signUp-->
+            <h1>SignUp</h1>
+            <div class="wrapper"><!--change to "container"-->
+                <form id="form">
+                    
+                    <div class="input-box" id="uname">
+                        <input type="text" placeholder="Username" required>
+                        <i class='bx bxs-user'></i>
+                    </div>
+                    <span class="mssg">format: [A-za-z][A-za-z0-9]*</span>
+                    <div class="input-box" id="phone">
+                        <input type="tel" placeholder="Phone" required>
+                        <i class='bx bxs-phone'></i>
+                    </div>
+                    <span class="mssg">characters allowed: 0-9</span>
+                    <div class="input-box" id="pass">
+                        <input type="text" placeholder="Password" minlength="8" maxlength="12" required>
+                        <i class='bx bxs-lock-alt'></i>
+                    </div>
+                    <span class="mssg">characters allowed: all, no spaces</span>
+                    <div class="input-box" id="c_pass">
+                        <input type="text" placeholder="Confirm Password" minlength="8" required>
+                        <i class='bx bxs-lock-alt'></i>
+                    </div>
+                    <span class="mssg"></span>
+                    <div class="remember-forgot">
+                        <label><input id="rememberMe" type="checkbox">Remember Me</label>
+                    </div>
+                    <button type="submit" class="btn">Sign Up</button>
+                </form>
+            </div>
+            <div class="register-link"><!-- must change the name -->
+                <span>Already has an account? <a href="#" data-target="logIn" class="link">LogIn</a></span>
+            </div>
+
+
+        
+        <!--
+                
+            <ol>
+                <li><a href="#" data-target="home" class="nav-link">HOME</a></li>
+                <li><a href="#" data-target="list" class="nav-link">LIST</a></li>
+                <li><a href="#" data-target="detail" class="nav-link">DETAIL</a></li>
+            </ol>
+            -->
+        </div>
+
+        <div class="page" id="toDoList"><!--detail=toDoList-->
+            <h1>Your To do list</h1>
+            <!--template of one task -->
+            <template id="toDoTask">
+                <li>
+                    <input type="text" class="myTask" placeholder="add new task" ondblclick="enableEditMode()">
+                </li>
+            </template>
+            <!--
+                function enableEditMode() {
+                    var textBox = document.getElementById("myTask");
+                    textBox.disabled = false; 
+                 textBox.focus();
+                }
+            -->
+            <!--
+            <ol>
+                <li><a href="#" data-target="home" class="nav-link">HOME</a></li>
+                <li><a href="#" data-target="list" class="nav-link">LIST</a></li>
+                <li><a href="#" data-target="detail" class="nav-link">DETAIL</a></li>
+            </ol>
+            -->
+        </div>
+
+    </main>
+    <script src="spa.js"></script>
+</body>
+
+</html>
