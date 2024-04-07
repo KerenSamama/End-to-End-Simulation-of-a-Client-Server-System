@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>A Single Page Application</title>
+    <title>ToDoList</title>
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="spa.css">
+    <link rel="stylesheet" href="index.css">
     <!--  -->
 </head>
 
@@ -16,8 +16,8 @@
             <section class="container">
                 <div class="login">
 
-                    
-                    <form id="form">
+
+                    <form id="form"><!--verify if we need a form-->
                         <div class="username" id="username">
                             <input type="text" placeholder=" Username" required>
                             <i class='bx bxs-user'></i>
@@ -38,6 +38,7 @@
                         </div>
 
                     </form>
+                    <!--change -->
                     <div class="signup"><!-- must change the name-->
                         <span>Don't have an account? <a href="#" data-target="signUp"
                                 class="link signup-link">Signup</a></span>
@@ -57,42 +58,50 @@
 
         <div class="page" id="signUp"><!--list=signUp-->
             <h1>SignUp</h1>
-            <div class="wrapper"><!--change to "container"-->
-                <form id="form">
+            <section class="container"><!--change to "container"-->
+                <div class="login">
+                    <form id="form"><!--javscript-->
+
+                        <div class="input-box" id="uname"><!--javscript #uname input-->
+                            <input type="text" placeholder="Username" required>
+                            <span class="mssg"><!--format: [A-za-z][A-za-z0-9]*--></span>
+                            <i class='bx bxs-user'></i>
+                        </div>
+                        
+                        <div class="input-box" id="phone"><!--javscript#phone input--> 
+                            <input type="tel" placeholder="Phone" required>
+                            <span class="mssg">characters allowed: 0-9</span>
+                            <i class='bx bxs-phone'></i>
+                        </div>
+                        
+                        <div class="input-box" id="pass"><!--javscript #pass input-->
+                            <input type="text" placeholder="Password" minlength="8" maxlength="12" required>
+                            <span class="mssg">characters allowed: all, no spaces</span>
+                            <i class='bx bxs-lock-alt'></i>
+                        </div>
+                        
+                        <div class="input-box" id="c_pass"> <!--javscript #c_pass input-->
+                            <input type="text" placeholder="Confirm Password" minlength="8" required>
+                            <i class='bx bxs-lock-alt'></i>
+                        </div>
                     
-                    <div class="input-box" id="uname">
-                        <input type="text" placeholder="Username" required>
-                        <i class='bx bxs-user'></i>
-                    </div>
-                    <span class="mssg">format: [A-za-z][A-za-z0-9]*</span>
-                    <div class="input-box" id="phone">
-                        <input type="tel" placeholder="Phone" required>
-                        <i class='bx bxs-phone'></i>
-                    </div>
-                    <span class="mssg">characters allowed: 0-9</span>
-                    <div class="input-box" id="pass">
-                        <input type="text" placeholder="Password" minlength="8" maxlength="12" required>
-                        <i class='bx bxs-lock-alt'></i>
-                    </div>
-                    <span class="mssg">characters allowed: all, no spaces</span>
-                    <div class="input-box" id="c_pass">
-                        <input type="text" placeholder="Confirm Password" minlength="8" required>
-                        <i class='bx bxs-lock-alt'></i>
-                    </div>
-                    <span class="mssg"></span>
-                    <div class="remember-forgot">
-                        <label><input id="rememberMe" type="checkbox">Remember Me</label>
-                    </div>
-                    <button type="submit" class="btn">Sign Up</button>
-                </form>
-            </div>
+                        <div class="remember-forgot">
+                            <label><input id="rememberMe" type="checkbox">Remember Me</label><!--javscript #rememberMe-->
+                        </div>
+                        <div class="button_form">
+                            <button type="submit" class="btn">Sign Up</button>
+                        </div>
+                        
+                    </form>
+                </div>
+            </section>
             <div class="register-link"><!-- must change the name -->
                 <span>Already has an account? <a href="#" data-target="logIn" class="link">LogIn</a></span>
             </div>
 
 
-        
-        <!--
+
+            <!--
                 
             <ol>
                 <li><a href="#" data-target="home" class="nav-link">HOME</a></li>
@@ -102,21 +111,51 @@
             -->
         </div>
 
-        <div class="page" id="toDoList"><!--detail=toDoList-->
-            <h1>Your To do list</h1>
+        <div class="page" id="toDolists"><!--detail=toDoList-->
+            <h1>Your To do lists</h1>
             <!--template of one task -->
             <template id="toDoTask">
-                <li>
-                    <input type="text" class="myTask" placeholder="add new task" ondblclick="enableEditMode()">
+                <li class="one_task">
+                    <input type="text" class="myTask" placeholder="Double-click to update" readonly>
+                    <button type="button" class="delete_button">DELETE</button><!--put icone-->
                 </li>
             </template>
+
+
+            <template id="list_template">
+                <ol>
+            
+                </ol>
+                <button type="button" class="add_task">Add Task</button>
+
+            </template>
+
+            <div class="container">
+                <div class="table">
+                    <h1 class="click_to">TODAY</h1>
+                </div>
+                <div class="table">
+                    <h1 class="click_to">THIS WEEK</h1>
+                </div>
+                <div class="table">
+                    <h1 class="click_to">OTHER</h1>
+                </div>
+            </div>
             <!--
-                function enableEditMode() {
-                    var textBox = document.getElementById("myTask");
-                    textBox.disabled = false; 
-                 textBox.focus();
-                }
+    
+     var textBox = document.getElementById('editableTextBox');
+    textBox.addEventListener('dblclick', function() {
+        textBox.removeAttribute('readonly');
+    });
+    
+    textBox.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            textBox.setAttribute('readonly', true);
+            // Here you can add your update logic
+            console.log('Text updated:', textBox.value);
+        }
             -->
+               
             <!--
             <ol>
                 <li><a href="#" data-target="home" class="nav-link">HOME</a></li>
@@ -127,7 +166,8 @@
         </div>
 
     </main>
-    <script src="spa.js"></script>
+    <script src="../FullStack3/javascript/index.js"></script>
+    <script src="../FullStack3/javascript/toDoTask.js"></script>
 </body>
 
 </html>
