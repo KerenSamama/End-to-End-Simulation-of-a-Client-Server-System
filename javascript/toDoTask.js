@@ -5,28 +5,30 @@ window.onload = function() {
         var titleSelector = '.table:nth-child(' + titleIndex + ') h1';
         // Clone the extern list
         var listTemplate = document.getElementById('list_template').content.cloneNode(true);
-        listTemplate.querySelector(".add_task").addEventListener('click',addTask);
-        
+    
+        listTemplate.querySelector(".add_task").addEventListener('click', function(e) {
+            addTask(e.target.parentNode);
+        });
         // put the extern list on the div
         document.querySelector(titleSelector).parentNode.appendChild(listTemplate);
     }
 
-    //"TODAY"
-    document.querySelector('.table:nth-child(1) h1').addEventListener('click', function() {
-        addList(1);
-    });
+    // //"TODAY"
+    // document.querySelector('.table:nth-child(1) h1').addEventListener('click', function() {
+    //     addList(1);
+    // });
 
-    //"THIS WEEK"
-    document.querySelector('.table:nth-child(2) h1').addEventListener('click', function() {
-        addList(2);
-    });
+    // //"THIS WEEK"
+    // document.querySelector('.table:nth-child(2) h1').addEventListener('click', function() {
+    //     addList(2);
+    // });
 
-    //"OTHER"
-    document.querySelector('.table:nth-child(3) h1').addEventListener('click', function() {
-        addList(3);
-    });
+    // //"OTHER"
+    // document.querySelector('.table:nth-child(3) h1').addEventListener('click', function() {
+    //     addList(3);
+    // });
 
-    function addTask(){
+    function addTask(list){
          // Clone the intern list
         var taskTemplate = document.getElementById('toDoTask').content.cloneNode(true);
          
@@ -42,7 +44,12 @@ window.onload = function() {
        });
     
         // put the intern list on the extern list
-        listTemplate.querySelector('ol').appendChild(taskTemplate);
+        list.querySelector('ol').appendChild(taskTemplate);
+    }
+
+    //add the 3 to-do lists
+    for(i=1; i<=3; i++){
+        addList(i);
     }
 
 
