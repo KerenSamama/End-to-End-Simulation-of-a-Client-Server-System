@@ -113,7 +113,10 @@ document.addEventListener("DOMContentLoaded", () => {
             // Set current user in local storage
             localStorage.setItem('currentUser', user.name);
 
+            app.nav(e);
+
             // Redirect to menu page
+            /*
             var targetId = redirect_to_logIn.getAttribute('data-target');
             var targetElement = document.getElementById(targetId);
             if (targetElement) {
@@ -122,6 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 console.error('Not found');
             }
+            */
         }
     });
 });

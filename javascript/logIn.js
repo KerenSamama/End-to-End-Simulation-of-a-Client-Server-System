@@ -72,7 +72,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (stayConnected.checked) {
                 setCookie(signInUnameInput.value); 
             }
-
+            app.nav(e);
+            /*
             // Redirect to the menu.html page
             var targetId = redirect_to_list.getAttribute('data-target');
             var targetElement = document.getElementById(targetId);
@@ -82,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 console.error('Not found');
             }
-           
+           */
         }
     });
 });
