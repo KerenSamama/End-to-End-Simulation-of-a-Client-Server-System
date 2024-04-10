@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (stayConnected.checked) {
                 setCookie(signInUnameInput.value); 
             }
-            app.nav(e);
+            spaRouter.nav(e);
             /*
             // Redirect to the menu.html page
             var targetId = redirect_to_list.getAttribute('data-target');

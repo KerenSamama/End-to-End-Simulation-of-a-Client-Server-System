@@ -1,38 +1,19 @@
-
-// window.onload = function() {
-
-    
-//     var clickToElements = document.querySelectorAll(".container .click_to");
-
-//     clickToElements.forEach(function(element) {
-//         element.addEventListener("click", function(){
-//             // Accéder à l'élément parent de l'élément cliqué
-//             var parentTable = this.parentNode;
-           
-//         });
-//     });
-
-
-    
-
-// };
-    
-const app = {
+const spaRouter = {
     pages: [],
     show: new Event('show'),
     init: function(){
         console.log("init");
-        app.pages = document.querySelectorAll('.page');
-        app.pages.forEach((pg)=>{
-            pg.addEventListener('show', app.pageShown);
+        spaRouter.pages = document.querySelectorAll('.page');
+        spaRouter.pages.forEach((pg)=>{
+            pg.addEventListener('show', spaRouter.pageShown);
         });
         
         document.querySelectorAll('.link').forEach((link)=>{
-            link.addEventListener('click', app.nav);
+            link.addEventListener('click', spaRouter.nav);
         });
         
         history.replaceState({}, 'login', '#login');
-        window.addEventListener('popstate', app.poppin);
+        window.addEventListener('popstate', spaRouter.poppin);
     },
     nav: function(ev){
         ev.preventDefault();
@@ -41,7 +22,7 @@ const app = {
         document.getElementById(currentPage).classList.add('active');
         console.log(currentPage)
         history.pushState({}, currentPage, `#${currentPage}`);
-        document.getElementById(currentPage).dispatchEvent(app.show);
+        document.getElementById(currentPage).dispatchEvent(spaRouter.show);
     },
     pageShown: function(ev){
         console.log('Page', ev.target.id, 'just shown');
@@ -58,8 +39,8 @@ const app = {
         document.getElementById(hash).classList.add('active');
         console.log(hash)
         //history.pushState({}, currentPage, `#${currentPage}`);
-        document.getElementById(hash).dispatchEvent(app.show);
+        document.getElementById(hash).dispatchEvent(spaRouter.show);
     }
 }
 
-document.addEventListener('DOMContentLoaded', app.init);
+document.addEventListener('DOMContentLoaded', spaRouter.init);

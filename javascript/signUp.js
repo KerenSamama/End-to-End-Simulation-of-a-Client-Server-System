@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Set current user in local storage
             localStorage.setItem('currentUser', user.name);
 
-            app.nav(e);
+            spaRouter.nav(e);
 
             // Redirect to menu page
             /*
