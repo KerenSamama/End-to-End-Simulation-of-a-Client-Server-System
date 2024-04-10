@@ -4,7 +4,7 @@ class FXMLHttpRequest{
         this.onload;
 
         //Defines a function to be called when the readyState property changes
-        this.onreadystatechange;
+        this.onreadystatechange = 0;
 
         /**	Holds the status of the XMLHttpRequest.
             0: request not initialized
@@ -12,10 +12,10 @@ class FXMLHttpRequest{
             2: request received
             3: processing request
             4: request finished and response is ready */
-        this.readyState;
+        this.readyState = 0;
 
         //Returns the response data as a string
-        this.resposeText;
+        this.resposeText=null;//reponse du serveur si c ok
 
         //Returns the response data as XML data
         this.responseXML;
@@ -33,6 +33,10 @@ class FXMLHttpRequest{
 
     //Cancels the current request
     abort(){
+         // Resets the XMLHttpRequest object to cancel the request
+         this.readyState = 0;
+         this.status = 0;
+         this.responseText = null;
 
     }
 
@@ -51,15 +55,33 @@ class FXMLHttpRequest{
     async: true (asynchronous) or false (synchronous)
     user: optional user name
     psw: optional password */
+    //open the connection
     open(method, url, async, user, psw){
+        this.readyState=1;// open the request
+        this.method=method;// if its GET , add to constructor
+        this.url=url;
+        this.async=async;
+        this.user=user;
+        this.psw=psw;
 
     }
 
     //Sends the request to the server
     //Used for GET requests
     send(){
-
+        console.log(`Requet ${this.method} send to : ${this.url}`);
+        setTimeout(() => {
+            this.readyState = 4; // 4: end
+            this.status = 200;
+            this.responseText = "response from server";//need to change
+            //if requete is end
+            if (this.onload) {
+                this.onload();
+            }
+        }, 2000); // time for response from server
     }
+
+    
 
     //Sends the request to the server.
     //Used for POST requests

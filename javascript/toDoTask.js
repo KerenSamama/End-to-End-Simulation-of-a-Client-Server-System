@@ -46,11 +46,14 @@ window.onload = function() {
         // put the intern list on the extern list
         list.querySelector('ol').appendChild(taskTemplate);
     }
-
+     
     //add the 3 to-do lists
     for(i=1; i<=3; i++){
         addList(i);
     }
+
+    //delete
+    
 
 
 };
