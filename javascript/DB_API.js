@@ -30,12 +30,6 @@ const db = {
         localStorage.setItem(uname, JSON.stringify(userData));
     },
 
-    // //אימות משתמש בכניסה
-    // validateUser: function(uname, pwd){
-    //     const userData = JSON.parse(localStorage.getItem(uname));
-    //     return (userData?.password === pwd);
-    // },
-
     //שליפת כל הרשימות
     getAllLists: function(currentUser){
         const userData = JSON.parse(localStorage.getItem(currentUser));
