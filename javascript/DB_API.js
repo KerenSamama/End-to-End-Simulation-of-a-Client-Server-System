@@ -16,24 +16,24 @@ const db = {
     //אימות משתמש בכניסה
     validateUser: function(uname, pwd){
         const userData = JSON.parse(localStorage.getItem(uname));
-        return (userData.password === pwd);
+        return (userData?.password === pwd);
     },
 
     //שליפת רשימת משימות
-    getList(currentUser, listName){
+    getList: function(currentUser, listName){
         const userData = JSON.parse(localStorage.getItem(currentUser));
-        return userData.toDoLists[listName];
+        return userData?.toDoLists[listName];
     },
 
     //הוספת משימה
-    addTask(currentUser, listName, text){
+    addTask: function(currentUser, listName, text){
         const userData = JSON.parse(localStorage.getItem(currentUser));
         userData.toDoLists[listName].push(text);
         localStorage.setItem(currentUser, JSON.stringify(userData));
     },
 
     //עדכון משימה
-    updateTask(currentUser, listName, taskNum, text){
+    updateTask: function(currentUser, listName, taskNum, text){
         const userData = JSON.parse(localStorage.getItem(currentUser));
         userData.toDoLists[listName][taskNum - 1] = text;
         localStorage.setItem(currentUser, JSON.stringify(userData));
@@ -41,12 +41,13 @@ const db = {
     },
 
     //מחיקת משימה
-    deleteTask(currentUser, listName, taskNum){
+    deleteTask: function(currentUser, listName, taskNum){
         const userData = JSON.parse(localStorage.getItem(currentUser));
-        for (let i = taskNum - 1; index < userData.toDoLists[listName].length; i++) {
+        for (let i = taskNum - 1; i < userData.toDoLists[listName].length; i++) {
             userData.toDoLists[listName][i] = userData.toDoLists[listName][i + 1];  
         }
-
+        userData.toDoLists[listName].pop();
+        localStorage.setItem(currentUser, JSON.stringify(userData));
     }
 
 }
