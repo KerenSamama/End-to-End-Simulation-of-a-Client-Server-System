@@ -6,7 +6,18 @@ document.addEventListener("DOMContentLoaded", () => {
     let c_passInput = document.querySelector('#c_pass input');
     let stayConnected = document.querySelector('#rememberMe');
     let redirect_to_logIn=document.getElementById('button_form_id2');
+    
 
+    //creation XMLHttpRequest
+    function getFxhr(){
+        try{
+            xhr=new FXMLHttpRequest();
+        }
+        catch(e){
+            alert("ERROR");
+        }
+        return xhr;
+    }
     // Event listener for input on username field
     unameInput.addEventListener('input', function () {
         valid_input(this, /[^a-zA-Z0-9]+/);
@@ -49,6 +60,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // check if user already exists
     function userExists() {
+        //CE QUE JAI CHANGER:
+        xhr=getFxhr();
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4 && xhr.status==200){
+
+            }
+        }
+        xhr.open('GET',"URL",True);
+        xhr.send();
+        
+
         const users = JSON.parse(localStorage.getItem('users'));
         for (let i = 0; i < users.length; i++)
             if (users[i].name === unameInput.value)
