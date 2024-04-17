@@ -49,12 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 type:"user",
                 name:unameInput.value,
                 password:passInput.value,
-                phone:phoneInput.value,
-                toDoLists:{
-                    today: [],
-                    thisWeek: [],
-                    other: []
-                } 
+                phone:phoneInput.value
             }
             
             //convert to JSON

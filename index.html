@@ -34,7 +34,7 @@
                             <a href="#">Forgot password?</a>
                         </div>
                         <div class="button_form">
-                            <button id="button_form_id" type="submit" >Login</button>
+                            <button id="button_form_id" type="submit">Login</button>
                         </div>
 
                     </form>
@@ -67,31 +67,32 @@
                             <span class="mssg"><!--format: [A-za-z][A-za-z0-9]*--></span>
                             <i class='bx bxs-user'></i>
                         </div>
-                        
-                        <div class="input-box" id="phone"><!--javscript#phone input--> 
+
+                        <div class="input-box" id="phone"><!--javscript#phone input-->
                             <input type="tel" placeholder="Phone" required>
                             <span class="mssg">characters allowed: 0-9</span>
                             <i class='bx bxs-phone'></i>
                         </div>
-                        
+
                         <div class="input-box" id="pass"><!--javscript #pass input-->
                             <input type="text" placeholder="Password" minlength="8" maxlength="12" required>
                             <span class="mssg">characters allowed: all, no spaces</span>
                             <i class='bx bxs-lock-alt'></i>
                         </div>
-                        
+
                         <div class="input-box" id="c_pass"> <!--javscript #c_pass input-->
                             <input type="text" placeholder="Confirm Password" minlength="8" required>
                             <i class='bx bxs-lock-alt'></i>
                         </div>
-                    
+
                         <div class="remember-forgot">
-                            <label><input id="rememberMe" type="checkbox">Remember Me</label><!--javscript #rememberMe-->
+                            <label><input id="rememberMe" type="checkbox">Remember
+                                Me</label><!--javscript #rememberMe-->
                         </div>
                         <div class="button_form">
-                            <button id="button_form_id_2" type="submit" class="btn" onclick="store()" >Sign Up</button>
+                            <button id="button_form_id_2" type="submit" class="btn" onclick="store()">Sign Up</button>
                         </div>
-                        
+
                     </form>
                 </div>
             </section>
@@ -111,8 +112,10 @@
             -->
         </div>
 
+
+        <h1>Your To do lists</h1>
         <div class="page" id="toDolists"><!--detail=toDoList-->
-            <h1>Your To do lists</h1>
+
             <!--template of one task -->
             <template id="toDoTask">
                 <li class="one_task">
@@ -124,7 +127,7 @@
 
             <template id="list_template">
                 <ol>
-            
+
                 </ol>
                 <button type="button" class="add_task">Add Task</button>
 
@@ -142,7 +145,7 @@
                 </div>
             </div>
             <a href="#" data-target="logIn" class="link">logOut</a>
-               
+
             <!--
             <ol>
                 <li><a href="#" data-target="home" class="nav-link">HOME</a></li>
