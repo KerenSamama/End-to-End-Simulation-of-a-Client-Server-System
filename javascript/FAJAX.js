@@ -53,15 +53,15 @@ class FXMLHttpRequest{
     }
 /** Specifies the request
     method: the request type GET or POST
-    url: the file location
+    json: the requested method
     async: true (asynchronous) or false (synchronous)
     user: optional user name
     psw: optional password */
     //open the connection
-    open(method, url, async, user, psw){
+    open(method, json, async, user, psw){
         this.readyState=1;// open the request
         this.method=method;// if its GET , add to constructor
-        this.url=url;
+        this.json=json;
         this.async=async;
         this.user=user;
         this.psw=psw;
@@ -71,7 +71,7 @@ class FXMLHttpRequest{
     //Sends the request to the server
     //Used for GET requests
     send(){
-        console.log(`Requet ${this.method} send to : ${this.url}`);
+        console.log(`Requet ${this.method} send to : ${this.json}`);
         setTimeout(() => {
             this.readyState = 4; // 4: end
             this.status = 200;
