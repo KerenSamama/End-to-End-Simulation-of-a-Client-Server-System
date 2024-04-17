@@ -1,23 +1,74 @@
 document.addEventListener("DOMContentLoaded", () => {
     let form = document.getElementById('form2')
-    let unameInput = document.querySelector('#uname input');
-    let phoneInput = document.querySelector('#phone input');
-    let passInput = document.querySelector('#pass input');
-    let c_passInput = document.querySelector('#c_pass input');
-    let stayConnected = document.querySelector('#rememberMe');
+    //let unameInput = document.querySelector('#uname input');
+    //let phoneInput = document.querySelector('#phone input');
+    //let passInput = document.querySelector('#pass input');
+    //let c_passInput = document.querySelector('#c_pass input');
+    //let stayConnected = document.querySelector('#rememberMe');
     let redirect_to_logIn=document.getElementById('button_form_id2');
     
-
-    //creation XMLHttpRequest
-    function getFxhr(){
-        try{
-            xhr=new FXMLHttpRequest();
+    function store(){ // sign up function
+        
+        
+        let unameInput = document.querySelector('#uname input');
+        //var email=document.getElementById('email');
+        let passInput = document.querySelector('#pass input');
+        let c_passInput = document.querySelector('#c_pass input');
+        let phoneInput = document.querySelector('#phone input');
+        var lowerCaseLetters = /[a-z]/g;
+        var upperCaseLetters = /[A-Z]/g;
+        var numbers = /[0-9]/g;
+    
+    
+        if(unameInput.value.length == 0){
+            alert('Please fill in name');
+        
+        if(phoneInput.value.length<8 && !phoneInput.value.match(numbers))
+            alert('Please the phone number must contain 8 digits')
+    
+        }else if(passInput.value.length == 0){
+            alert('Please fill in password');
+    
+        }else if(unameInput.value.length == 0 && passInput.value.length == 0){
+            alert('Please fill in name and password');
+    
+        }else if(!passInput.value.match(numbers)){
+            alert('please add 1 number');
+    
+        }else if(!passInput.value.match(upperCaseLetters)){
+            alert('please add 1 uppercase letter');
+    
+        }else if(!passInput.value.match(lowerCaseLetters)){
+            alert('please add 1 lovercase letter');
+    
+        }else if(passInput.value!=c_passInput.value){
+            alert('passwords do not match');
+        }else{
+           
+            var new_user ={
+                type:"user",
+                name:unameInput.value,
+                password:passInput.value,
+                phone:phoneInput.value,
+                toDoLists:{
+                    today: [],
+                    thisWeek: [],
+                    other: []
+                } 
+            }
+            
+            //convert to JSON
+            var new_user_json=JSON.stringify(new_user);
+            var fxhttp=new FXMLHttpRequest();
+            fxhttp.open("POST","./FakeURL",true);  
+            fxhttp.send(new_user_json);
+            alert('Your account has been created');
+    
         }
-        catch(e){
-            alert("ERROR");
-        }
-        return xhr;
     }
+
+
+  
     // Event listener for input on username field
     unameInput.addEventListener('input', function () {
         valid_input(this, /[^a-zA-Z0-9]+/);
