@@ -114,7 +114,7 @@ class FXMLHttpRequest{
         this.method=method;
         this.url=url;
        
-        if(this.async==true){
+        if(this.async==true){ //Asynchrone
             this.onload=(e) => {
                 if (this.readyState === 4) {
                      if (this.status === 200) {
