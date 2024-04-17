@@ -6,7 +6,7 @@ class FXMLHttpRequest{
         this.onload;
 
         //Defines a function to be called when the readyState property changes
-        this.onreadystatechange = 0;
+        this.onreadystatechange;
 
         /**	Holds the status of the XMLHttpRequest.
             0: request not initialized

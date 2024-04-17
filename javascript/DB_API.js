@@ -13,15 +13,20 @@ const db = {
         localStorage.setItem(uname, JSON.stringify(userData));
     },
 
+    //שליפת נתוני משתמש
+    getUserData: function(uname){
+        return JSON.parse(localStorage.getItem(uname));
+    },
+
      //שליפת סיסמא 
     getPassword: function(uname){
-        const userData = JSON.parse(localStorage.getItem(uname));
+        const userData = this.getUserData(uname);
         return userData?.password;
     },
 
      //עדכון סיסמא 
      getPassword: function(uname, pwd){
-        const userData = JSON.parse(localStorage.getItem(uname));
+        const userData = this.getUserData(uname);
         if(!userData){
             console.error("user not found");
             return false;
@@ -32,19 +37,19 @@ const db = {
 
     //שליפת כל הרשימות
     getAllLists: function(currentUser){
-        const userData = JSON.parse(localStorage.getItem(currentUser));
+        const userData = this.getUserData(currentUser);
         return userData?.toDoLists;
     },  
 
     //שליפת רשימת משימות
     getList: function(currentUser, listName){
-        const userData = JSON.parse(localStorage.getItem(currentUser));
+        const userData = this.getUserData(currentUser);
         return userData?.toDoLists[listName];
     },
 
     //הוספת רשימה
     addTask: function(currentUser, listName){
-        const userData = JSON.parse(localStorage.getItem(currentUser));
+        const userData = this.getUserData(currentUser);
         if(!userData){
             console.error("user not found");
             return false;
@@ -55,7 +60,7 @@ const db = {
 
     //הוספת משימה
     addTask: function(currentUser, listName, text){
-        const userData = JSON.parse(localStorage.getItem(currentUser));
+        const userData = this.getUserData(currentUser);
         if(!userData || !(userData.toDoLists[listName])){
             console.error("user or list not found");
             return false;
@@ -66,7 +71,7 @@ const db = {
 
     //עדכון משימה
     updateTask: function(currentUser, listName, taskNum, text){
-        const userData = JSON.parse(localStorage.getItem(currentUser));
+        const userData = this.getUserData(currentUser);
         if(!userData || !(userData.toDoLists[listName])){
             console.error("user or list not found");
             return false;
@@ -78,7 +83,7 @@ const db = {
 
     //מחיקת משימה
     deleteTask: function(currentUser, listName, taskNum){
-        const userData = JSON.parse(localStorage.getItem(currentUser));
+        const userData = this.getUserData(currentUser);
         if(!userData || !(userData.toDoLists[listName])){
             console.error("user or list not found");
             return false;
