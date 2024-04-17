@@ -1,16 +1,16 @@
 
-class network{
+class Network{
     serv = new server();
      
     //Asynchrone, data= what we want to send to server
     //dispatcher : callback function to handle server response.
-    sendAsync(data, callback){    
+    static sendAsync(data, callback){    
         this.serv.hendleRequest(data, callback);
     }
     
     //synchrone, data= what we want ton send to server
 
-    send(data){
+    static send(data){
         let result =  this.serv.hendleRequest(data);
         return result;
     }

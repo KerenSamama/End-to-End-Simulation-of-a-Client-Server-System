@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
            
             var new_user ={
                 type:"user",
-                name:unameInput.value,
+                uname:unameInput.value,
                 password:passInput.value,
                 phone:phoneInput.value
             }
@@ -169,37 +169,37 @@ document.addEventListener("DOMContentLoaded", () => {
             errMessage(c_passInput, 'passwords do not match');
             return false;
         }
-        xhr=getFxhr();
-        xhr.onreadystatechange=function(){
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        console.log("המשתמש נרשם בהצלחה!");
-                        spaRouter.nav(e);
-                    } else if(xhr.status === 409){
-                        console.error("שם משתמש קיים:", xhr.responseText);
-                        errMessage(unameInput, 'username already exists');
-                        return false;
-                    }else {
-                        console.error("שגיאה ברישום משתמש:", xhr.responseText);
-                        errMessage(form, xhr.responseText);
-                        return false;
-                    }
-                }
-            };
-        }
+        // xhr=getFxhr();
+        // xhr.onreadystatechange=function(){
+        //     xhr.onreadystatechange = function() {
+        //         if (xhr.readyState === 4) {
+        //             if (xhr.status === 200) {
+        //                 console.log("המשתמש נרשם בהצלחה!");
+        //                 spaRouter.nav(e);
+        //             } else if(xhr.status === 409){
+        //                 console.error("שם משתמש קיים:", xhr.responseText);
+        //                 errMessage(unameInput, 'username already exists');
+        //                 return false;
+        //             }else {
+        //                 console.error("שגיאה ברישום משתמש:", xhr.responseText);
+        //                 errMessage(form, xhr.responseText);
+        //                 return false;
+        //             }
+        //         }
+        //     };
+        // }
 
-        xhr.open('POST',JSON.stringify({func: "signUP"}), true);
+        // xhr.open('POST',JSON.stringify({func: "signUP"}), true);
         
-        // Create user object
-        let user = {
-            name: unameInput.value,
-            phone: phoneInput.value,
-            password: passInput.value,
-            // lastSeen: new Date()
-        };
+        // // Create user object
+        // let user = {
+        //     name: unameInput.value,
+        //     phone: phoneInput.value,
+        //     password: passInput.value,
+        //     // lastSeen: new Date()
+        // };
 
-        xhr.send(JSON.stringify(user));
+        // xhr.send(JSON.stringify(user));
 
 
             

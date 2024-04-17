@@ -3,10 +3,10 @@
 class FXMLHttpRequest{
     constructor(){
         //	Defines a function to be called when the request is received (loaded)
-        this.onload;
+        //this.onload;
 
         //Defines a function to be called when the readyState property changes
-        this.onreadystatechange;
+        this.onreadystatechange = null;
 
         /**	Holds the status of the XMLHttpRequest.
             0: request not initialized
@@ -17,35 +17,35 @@ class FXMLHttpRequest{
         this.readyState = 0;
 
         //Returns the response data as a string
-        this.resposeText=null;//reponse du serveur si c ok
+        this.resposeText='';//reponse du serveur si c ok
 
         //Returns the response data as XML data
-        this.responseXML;
+        //this.responseXML;
 
         /**	Returns the status-number of a request
             200: "OK"
             403: "Forbidden"
             404: "Not Found"
             For a complete list go to the Http Messages Reference */
-        this.status;
+        this.status = 0;
         
         //Returns the status-text (e.g. "OK" or "Not Found")
-        this.statusText;
+        this.statusText = '';
     }
 
     //Cancels the current request
-    abort(){
-         // Resets the XMLHttpRequest object to cancel the request
-         this.readyState = 0;
-         this.status = 0;
-         this.responseText = null;
+    // abort(){
+    //      // Resets the XMLHttpRequest object to cancel the request
+    //      this.readyState = 0;
+    //      this.status = 0;
+    //      this.responseText = '';
 
-    }
+    // }
 
-    //Returns header information
-    getAllResponseHeaders(){
+    // //Returns header information
+    // getAllResponseHeaders(){
 
-    }
+    // }
 
     //Returns specific header information
     getResponseHeader(){
@@ -58,9 +58,9 @@ class FXMLHttpRequest{
     user: optional user name
     psw: optional password */
     //open the connection
-    open(method, json, async, user, psw){
+    open(method, json, async = true, user, psw){
         this.readyState=1;// open the request
-        this.method=method;// if its GET , add to constructor
+        this.method=method;
         this.json=json;
         this.async=async;
         this.user=user;
@@ -71,16 +71,24 @@ class FXMLHttpRequest{
     //Sends the request to the server
     //Used for GET requests
     send(){
-        console.log(`Requet ${this.method} send to : ${this.json}`);
-        setTimeout(() => {
-            this.readyState = 4; // 4: end
-            this.status = 200;
-            this.responseText = "response from server";//need to change
-            //if requete is end
-            if (this.onload) {
-                this.onload();
-            }
-        }, 2000); // time for response from server
+
+         console.log(`Requet ${this.method} send to : ${this.json}`);
+         this.readyState = 2;
+        if(this.async){
+            Network.sendAsync(this, this.onreadystatechange)
+        }
+        else{
+            responseText = Network.send(this)
+        }
+        // setTimeout(() => {
+        //     this.readyState = 4; // 4: end
+        //     this.status = 200;
+        //     this.responseText = "response from server";//need to change
+        //     //if requete is end
+        //     if (this.onload) {
+        //         this.onload();
+        //     }
+        // }, 2000); // time for response from server
     }
 
     
@@ -88,7 +96,8 @@ class FXMLHttpRequest{
     //Sends the request to the server.
     //Used for POST requests
     send(string){
-
+        this.body = JSON.parse(string);
+        this.send();
     }
 
     //Adds a label/value pair to the header to be sent
@@ -98,58 +107,58 @@ class FXMLHttpRequest{
 };
 /* -----------------------------------------------------------------------------------*/
 
-class FXMLHttpRequest{
-    response=null;
-    responseText="";
-    readyState=0;//connection state 
-    status=0; // response status  
-    onload=null;// verify response status and return the response
-    async=true;
-    method='';
-    url='';
+// class FXMLHttpRequest{
+//     response=null;
+//     responseText="";
+//     readyState=0;//connection state 
+//     status=0; // response status  
+//     onload=null;// verify response status and return the response
+//     async=true;
+//     method='';
+//     url='';
 
-     open(method, url, async){ // initialize fields
-        this.readyState=1;
-        this.async=async;
-        this.method=method;
-        this.url=url;
+//      open(method, url, async){ // initialize fields
+//         this.readyState=1;
+//         this.async=async;
+//         this.method=method;
+//         this.url=url;
        
-        if(this.async==true){ //Asynchrone
-            this.onload=(e) => {
-                if (this.readyState === 4) {
-                     if (this.status === 200) {
-                       return this.response;
-                } 
-                else {
-                  console.log(this.status);
-                }
-              }
-            };
+//         if(this.async==true){ //Asynchrone
+//             this.onload=(e) => {
+//                 if (this.readyState === 4) {
+//                      if (this.status === 200) {
+//                        return this.response;
+//                 } 
+//                 else {
+//                   console.log(this.status);
+//                 }
+//               }
+//             };
 
-         }
-        else{
-            this.onload =()=>{
+//          }
+//         else{
+//             this.onload =()=>{
     
-            if (this.status === 200) {
-                return this.response;}
-            else{
-                console.log(this.status)
-            }
-        };
-        }
+//             if (this.status === 200) {
+//                 return this.response;}
+//             else{
+//                 console.log(this.status)
+//             }
+//         };
+//         }
 
-    }
+//     }
 
-    send(body){ //send request to network
-    var fxmlhttp=null;
-    fxmlhttp=Network.send(body, this); 
-    this.readyState=fxmlhttp.readyState;
-    this.status=fxmlhttp.status;
-    this.response=fxmlhttp.response;
+//     send(body){ //send request to network
+//     var fxmlhttp=null;
+//     fxmlhttp=Network.send(body, this); 
+//     this.readyState=fxmlhttp.readyState;
+//     this.status=fxmlhttp.status;
+//     this.response=fxmlhttp.response;
 
     
      
         
-    }
+//     }
     
-}
+// }

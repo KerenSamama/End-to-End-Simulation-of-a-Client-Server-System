@@ -1,22 +1,97 @@
 class server{
-    constructor(){
-
-    }
     
-    hendleRequest(data,dispatcher){
+    hendleRequest(data,callback){
+        data.readyState = 3;
+        req = JSON.parse(data.body); //צריך לשלוח ג'ייסון עם שדות מתאימים ,send נשלח דרך פונקציית 
+        let result;
+
+        setTimeout(() =>{
+            switch(data.method){
+                case 'GET': //שליפת רשימה
+                    result = db.getList(req.uname, req.listName);
+                    break;
+
+                case 'POST': //הוספת משימה
+                    result = db.addTask(req.uname, req.listName, req.text);
+                    break;
+
+                case'PUT': //עדכון משימה
+                    result = db.updateTask(req.uname, req.listName, req.taskNum, req.text);
+                    break;
+
+                case 'DELETE': //מחיקת משימה
+                    result = db.deleteTask(req.uname, req.listName, req.taskNum);
+                    break;
+                
+                default:
+                    data.status = 405;
+                    console.error("method not supported");                 
+
+            }
+
+            if(!result){
+                data.status = 409;
+                console.error("data not found");
+            }
+            else{
+                data.status = 200;
+                data.responseText = JSON.stringify(result);//לכאן מוחזרת תשובה
+            }
+            data.readyState = 4;
+            callback();
+        }, 3000)
 
     }
 
     hendleRequest(data){
-        
-        
-    }
+        data.readyState = 3;
+        req = JSON.parse(data.body);
 
+        if(data.method === 'POST'){
+            if(data.url === "./signUp"){
+                if(!db.getUserData(req.uname)){
+                    db.addUser(req.name);
+                    data.status = 200;
+                    data.readyState = 4;
+                    return true;//משתמש נרשם
+                }
+                else {
+                    data.status = 409;
+                    console.error("userName is already in use");
+                    data.readyState = 4;
+                    return false;//משתמש לא נרשם
+                } 
 
-    //אימות משתמש בכניסה
-    validateUser(uname, pwd){
-        return (db.getPassword(uname) === pwd);
-    }
+            }
+            else if(data.url === "./logIn"){
+                if(db.getPassword(req.uname) === req.password){
+                    data.status = 200;
+                    data.readyState = 4;
+                    return true;//משתמש תקין
+                }
+                else{
+                    data.status = 409;
+                    console.error("userName or password incorrect");
+                    data.readyState = 4;
+                    return false;//שם משתמש או סיסמא שגויים
+                }
+            }
+            else{
+                data.status = 404;
+                console.error("page not found");
+                data.readyState = 4;
+                return false;
+            }
+
+         }
+         else {
+            data.status = 405;
+            console.error("method not supported");
+            data.readyState = 4;
+            return false;
+         }
+     }
+
 
 }
 
