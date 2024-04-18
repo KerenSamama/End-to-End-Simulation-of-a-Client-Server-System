@@ -63,13 +63,13 @@
                     <form id="form2" data-target="logIn"><!--javscript-->
 
                         <div class="input-box" id="uname"><!--javscript #uname input-->
-                            <input type="text" placeholder="Username" required>
-                            <span class="mssg"><!--format: [A-za-z][A-za-z0-9]*--></span>
+                            <input type="text" placeholder="Username" required pattern="[A-za-z][A-za-z0-9]*">
+                            <span class="mssg">format: [A-za-z][A-za-z0-9]*</span>
                             <i class='bx bxs-user'></i>
                         </div>
 
                         <div class="input-box" id="phone"><!--javscript#phone input-->
-                            <input type="tel" placeholder="Phone" required minlength="10" maxlength="10">
+                            <input type="tel" placeholder="Phone" required minlength="9" maxlength="10" pattern="[0-9]+">
                             <span class="mssg">characters allowed: 0-9</span>
                             <i class='bx bxs-phone'></i>
                         </div>
@@ -113,9 +113,9 @@
         </div>
 
 
-        <h1>Your To do lists</h1>
+        
         <div class="page" id="toDolists"><!--detail=toDoList-->
-
+            <h1>Your To do lists</h1>
             <!--template of one task -->
             <template id="toDoTask">
                 <li class="one_task">

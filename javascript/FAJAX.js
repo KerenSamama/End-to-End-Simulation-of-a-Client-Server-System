@@ -30,6 +30,8 @@ class FXMLHttpRequest{
         
         //Returns the status-text (e.g. "OK" or "Not Found")
         this.statusText = '';
+
+        this.async=true;
     }
 
 
