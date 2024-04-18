@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
        
         if(passInput.value!=c_passInput.value){
             alert('passwords do not match');
+            return false;
 
         }else{
            
@@ -25,8 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
             var fxhttp=new FXMLHttpRequest();
             fxhttp.open("POST","./signUp", false /**סינכרוני */);
             fxhttp.send(new_user_json);
-            
+            if(fxhttp.status === 200){
             alert('Your account has been created');
+            return true;
+            }else{
+                alert(fxhttp.statusText);
+                return false;
+            }
             
     
         }
@@ -34,8 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Event listener for form submission
     form.addEventListener('submit', function (e) {
         e.preventDefault();
-        store();
-        spaRouter.nav(e);
+        if(store()){
+            spaRouter.nav(e);
+        }
         
     });
 });

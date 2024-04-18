@@ -1,5 +1,5 @@
 class Server{
-    
+  
     hendleRequestAsync(data,callback){
         data.readyState = 3;
         const req = JSON.parse(data.body); //צריך לשלוח ג'ייסון עם שדות מתאימים ,send נשלח דרך פונקציית 
@@ -25,13 +25,17 @@ class Server{
                 
                 default:
                     data.status = 405;
-                    console.error("method not supported");                 
+                    let err = "method not supported";
+                    data.statusText = err;
+                    console.error(err);                 
 
             }
 
             if(!result){
                 data.status = 409;
-                console.error("data not found");
+                let err = "data not found";
+                data.statusText = err;
+                console.error(err);
             }
             else{
                 data.status = 200;
@@ -57,7 +61,9 @@ class Server{
                 }
                 else {
                     data.status = 409;
-                    console.error("userName is already in use");
+                    let err = "userName is already in use";
+                    data.statusText = err;
+                    console.error(err); 
                     data.readyState = 4;
                     return false;//משתמש לא נרשם
                 } 
@@ -71,14 +77,18 @@ class Server{
                 }
                 else{
                     data.status = 409;
-                    console.error("userName or password incorrect");
+                    let err = "userName or password incorrect";
+                    data.statusText = err;
+                    console.error(err); 
                     data.readyState = 4;
                     return false;//שם משתמש או סיסמא שגויים
                 }
             }
             else{
                 data.status = 404;
-                console.error("page not found");
+                let err = "page not found";
+                data.statusText = err;
+                console.error(err);
                 data.readyState = 4;
                 return false;
             }
@@ -86,7 +96,9 @@ class Server{
          }
         else {
             data.status = 405;
-            console.error("method not supported");
+            let err = "method not supported";
+            data.statusText = err;
+            console.error(err);
             data.readyState = 4;
             return false;
         }
