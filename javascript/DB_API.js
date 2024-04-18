@@ -1,9 +1,9 @@
 const db = {
     //הוספת משתמש חדש
-    addUser: function(uname, phone, pwd){
+    addUser: function(uname, ph, pwd){
         const userData = {
             password: pwd,
-            phone: phone,
+            phone: ph,
             toDoLists:{
                 today: [],
                 thisWeek: [],
@@ -25,7 +25,7 @@ const db = {
     },
 
      //עדכון סיסמא 
-     getPassword: function(uname, pwd){
+     updatePassword: function(uname, pwd){
         const userData = this.getUserData(uname);
         if(!userData){
             console.error("user not found");

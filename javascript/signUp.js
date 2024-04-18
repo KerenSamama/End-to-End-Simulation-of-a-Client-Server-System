@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }else{
            
             var new_user ={
-                uname:unameInput.value,
-                password:passInput.value,
-                phone:phoneInput.value
+                uname: unameInput.value,
+                password: passInput.value,
+                phone: phoneInput.value
             }
             
             //convert to JSON
@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
             fxhttp.open("POST","./signUp", false /**סינכרוני */);
             fxhttp.send(new_user_json);
             if(fxhttp.status === 200){
-            alert('Your account has been created');
-            return true;
+                alert('Your account has been created');
+                return true;
             }else{
                 alert(fxhttp.statusText);
                 return false;

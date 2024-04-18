@@ -10,14 +10,18 @@ document.addEventListener('DOMContentLoaded', function () {
         var user_check={
             uname:signInUnameInput.value,
             password:signInPassInput.value,
-            phone:""
         }
 
         var user_check_json=JSON.stringify(user_check);
         var fxhttp=new FXMLHttpRequest();
-        fxhttp.open("GET","./logIn");
+        fxhttp.open("POST","./logIn");
         fxhttp.send(user_check_json);
-        
+        if(fxhttp.status === 200){
+            return true;
+        }else{
+            alert(fxhttp.statusText);
+            return false;
+        }
 
     }
   
@@ -25,8 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
     signInForm.addEventListener('submit', function (e) {
         e.preventDefault();
         e.stopPropagation();
-        check();
-        spaRouter.nav(e);
+        if(check()){
+            spaRouter.nav(e);
+        }
             /*
             // Redirect to the menu.html page
             var targetId = redirect_to_list.getAttribute('data-target');

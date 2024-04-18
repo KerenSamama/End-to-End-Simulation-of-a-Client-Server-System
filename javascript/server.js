@@ -54,7 +54,7 @@ class Server{
         if(data.method === 'POST'){
             if(data.url === "./signUp"){
                 if(!db.getUserData(req.uname)){
-                    db.addUser(req.name);
+                    db.addUser(req.uname, req.phone, req.password);
                     data.status = 200;
                     data.readyState = 4;
                     return true;//משתמש נרשם
