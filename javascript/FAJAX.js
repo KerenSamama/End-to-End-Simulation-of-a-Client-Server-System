@@ -74,16 +74,16 @@ class FXMLHttpRequest{
     send(data) {
         
         if (data) {
-            this.body = JSON.parse(data);
+            this.body = data;
         }
 
         console.log(`Request ${this.method} sent to: ${this.url}`);
         this.readyState = 2;
 
         if (this.async) {
-            Network.sendAsync(this, this.onreadystatechange);
+            network.sendAsync(this, this.onreadystatechange);
         } else {
-            this.responseText = Network.send(this);
+            this.responseText = network.send(this);
         }
     }
 

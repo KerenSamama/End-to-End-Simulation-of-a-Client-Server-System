@@ -1,8 +1,8 @@
-class server{
+class Server{
     
     hendleRequestAsync(data,callback){
         data.readyState = 3;
-        req = JSON.parse(data.body); //צריך לשלוח ג'ייסון עם שדות מתאימים ,send נשלח דרך פונקציית 
+        const req = JSON.parse(data.body); //צריך לשלוח ג'ייסון עם שדות מתאימים ,send נשלח דרך פונקציית 
         let result;
 
         setTimeout(() =>{
@@ -45,7 +45,7 @@ class server{
 
     hendleRequestSync(data){
         data.readyState = 3;
-        req = JSON.parse(data.body);
+        const req = JSON.parse(data.body);
 
         if(data.method === 'POST'){
             if(data.url === "./signUp"){
