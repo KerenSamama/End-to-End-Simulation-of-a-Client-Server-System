@@ -1,5 +1,4 @@
 
-
 class FXMLHttpRequest{
     constructor(){
         //	Defines a function to be called when the request is received (loaded)
@@ -33,44 +32,26 @@ class FXMLHttpRequest{
         this.statusText = '';
     }
 
-    //Cancels the current request
-    // abort(){
-    //      // Resets the XMLHttpRequest object to cancel the request
-    //      this.readyState = 0;
-    //      this.status = 0;
-    //      this.responseText = '';
-
-    // }
-
-    // //Returns header information
-    // getAllResponseHeaders(){
-
-    // }
 
     //Returns specific header information
     getResponseHeader(){
 
     }
-/** Specifies the request
-    method: the request type GET or POST
-    json: the requested method
-    async: true (asynchronous) or false (synchronous)
-    user: optional user name
-    psw: optional password */
-    //open the connection
-    open(method, json, async = true, user, psw){
-        this.readyState=1;// open the request
-        this.method=method;
-        this.json=json;
-        this.async=async;
-        this.user=user;
-        this.psw=psw;
 
+    
+  //JAI CHANGER LA OPEN
+    open(method, url, async){ // initialize fields
+        this.readyState=1; // open the request
+        this.method=method;
+        this.url=url;
+        this.async=async;
+        
     }
 
     //Sends the request to the server
     //Used for GET requests
-    send(){
+ /*    send(){
+        
 
          console.log(`Requet ${this.method} send to : ${this.json}`);
          this.readyState = 2;
@@ -80,15 +61,6 @@ class FXMLHttpRequest{
         else{
             responseText = Network.send(this)
         }
-        // setTimeout(() => {
-        //     this.readyState = 4; // 4: end
-        //     this.status = 200;
-        //     this.responseText = "response from server";//need to change
-        //     //if requete is end
-        //     if (this.onload) {
-        //         this.onload();
-        //     }
-        // }, 2000); // time for response from server
     }
 
     
@@ -98,6 +70,21 @@ class FXMLHttpRequest{
     send(string){
         this.body = JSON.parse(string);
         this.send();
+    } */
+    send(data) {
+        
+        if (data) {
+            this.body = JSON.parse(data);
+        }
+
+        console.log(`Request ${this.method} sent to: ${this.url}`);
+        this.readyState = 2;
+
+        if (this.async) {
+            Network.sendAsync(this, this.onreadystatechange);
+        } else {
+            this.responseText = Network.send(this);
+        }
     }
 
     //Adds a label/value pair to the header to be sent

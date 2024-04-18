@@ -1,6 +1,6 @@
 class server{
     
-    hendleRequest(data,callback){
+    hendleRequestAsync(data,callback){
         data.readyState = 3;
         req = JSON.parse(data.body); //צריך לשלוח ג'ייסון עם שדות מתאימים ,send נשלח דרך פונקציית 
         let result;
@@ -43,7 +43,7 @@ class server{
 
     }
 
-    hendleRequest(data){
+    hendleRequestSync(data){
         data.readyState = 3;
         req = JSON.parse(data.body);
 
@@ -84,13 +84,13 @@ class server{
             }
 
          }
-         else {
+        else {
             data.status = 405;
             console.error("method not supported");
             data.readyState = 4;
             return false;
-         }
-     }
+        }
+    }
 
 
 }
