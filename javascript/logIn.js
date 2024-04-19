@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var user_check_json=JSON.stringify(user_check);
         var fxhttp=new FXMLHttpRequest();
-        fxhttp.open("POST","./logIn");
+        fxhttp.open("POST","./logIn",false);
         fxhttp.send(user_check_json);
         if(fxhttp.status === 200){
             return true;

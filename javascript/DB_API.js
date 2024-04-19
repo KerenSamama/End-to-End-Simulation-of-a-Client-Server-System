@@ -48,7 +48,7 @@ const db = {
     },
 
     //הוספת רשימה
-    addTask: function(currentUser, listName){
+    addList: function(currentUser, listName){
         const userData = this.getUserData(currentUser);
         if(!userData){
             console.error("user not found");

@@ -1,6 +1,10 @@
 window.onload = function() {
     // function to add a list
+    var uname_value = document.querySelector('#username input');
+    var pass_value = document.querySelector('#pass input');
+    
     function addList(titleIndex) {
+        
        
         var titleSelector = '.table:nth-child(' + titleIndex + ') h1';
         // Clone the extern list
@@ -13,34 +17,38 @@ window.onload = function() {
         document.querySelector(titleSelector).parentNode.appendChild(listTemplate);
     }
 
-    // //"TODAY"
-    // document.querySelector('.table:nth-child(1) h1').addEventListener('click', function() {
-    //     addList(1);
-    // });
-
-    // //"THIS WEEK"
-    // document.querySelector('.table:nth-child(2) h1').addEventListener('click', function() {
-    //     addList(2);
-    // });
-
-    // //"OTHER"
-    // document.querySelector('.table:nth-child(3) h1').addEventListener('click', function() {
-    //     addList(3);
-    // });
 
     function addTask(list){
          // Clone the intern list
         var taskTemplate = document.getElementById('toDoTask').content.cloneNode(true);
-         
+        var table_name=list.querySelector('h1').id;
         var textBox = taskTemplate.querySelector('.myTask');
+
         textBox.addEventListener('dblclick', function() {
            textBox.removeAttribute('readonly');
        });
-       
+      
        textBox.addEventListener('keydown', function(event) {
-           if (event.key === 'Enter') {
-               textBox.setAttribute('readonly', true);
-           }
+        if (event.key === 'Enter') {
+            textBox.setAttribute('readonly', true);
+            var userInput = textBox.value;
+            console.log("Contenu de .myTask :", userInput);
+           
+            var user_check ={
+                uname: uname_value.value,
+                listname:table_name,
+                text:userInput
+            };
+            
+
+ 
+            console.log(user_check.toDoLists);
+            var user_check_json=JSON.stringify(user_check);
+            var fxhttp=new FXMLHttpRequest();
+            fxhttp.open("POST","./addTask", true);
+            fxhttp.send(user_check_json);
+            
+        }
        });
     
         // put the intern list on the extern list

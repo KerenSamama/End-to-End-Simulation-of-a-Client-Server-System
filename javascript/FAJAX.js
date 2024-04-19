@@ -42,15 +42,43 @@ class FXMLHttpRequest{
 
     
   //JAI CHANGER LA OPEN
-    open(method, url, async){ // initialize fields
+    open(method, url,async,body){ // initialize fields
         this.readyState=1; // open the request
         this.method=method;
         this.url=url;
         this.async=async;
+        this.body=body;
+        this.async=async;
+        this.readyState=0;
+        this.status=0;
+        this.responseText="";
+       
         
     }
 
-    //Sends the request to the server
+  
+    send(data) {
+        
+        if (data) {
+            this.body = data;
+  
+        }
+
+        console.log(`Request ${this.method} sent to: ${this.url}`);
+        this.readyState = 2;
+
+        if (this.async) {
+            network.sendAsync(this, this.onreadystatechange);
+        } else {
+            this.responseText = network.send(this);
+        }
+    }
+
+    //Adds a label/value pair to the header to be sent
+    setRequestHeader(){
+
+    }
+      //Sends the request to the server
     //Used for GET requests
  /*    send(){
         
@@ -73,26 +101,6 @@ class FXMLHttpRequest{
         this.body = JSON.parse(string);
         this.send();
     } */
-    send(data) {
-        
-        if (data) {
-            this.body = data;
-        }
-
-        console.log(`Request ${this.method} sent to: ${this.url}`);
-        this.readyState = 2;
-
-        if (this.async) {
-            network.sendAsync(this, this.onreadystatechange);
-        } else {
-            this.responseText = network.send(this);
-        }
-    }
-
-    //Adds a label/value pair to the header to be sent
-    setRequestHeader(){
-
-    }
 };
 /* -----------------------------------------------------------------------------------*/
 
