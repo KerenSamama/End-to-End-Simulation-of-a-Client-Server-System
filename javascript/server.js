@@ -103,7 +103,7 @@ class Server{
                 data.readyState = 4;
                 return false;
             }
-    //}, 2000)
+   
     }
 
 

@@ -1,22 +1,3 @@
-
-// window.onload = function() {
-
-    
-//     var clickToElements = document.querySelectorAll(".container .click_to");
-
-//     clickToElements.forEach(function(element) {
-//         element.addEventListener("click", function(){
-//             // Accéder à l'élément parent de l'élément cliqué
-//             var parentTable = this.parentNode;
-           
-//         });
-//     });
-
-
-    
-
-// };
-    
 const app = {
     pages: [],
     show: new Event('show'),
@@ -46,10 +27,7 @@ const app = {
     pageShown: function(ev){
         console.log('Page', ev.target.id, 'just shown');
         let h1 = ev.target.querySelector('h1');
-        // h1.classList.add('big')
-        // setTimeout((h)=>{
-        //     h.classList.remove('big');
-        // }, 1200, h1);
+       
     },
     poppin: function(ev){
         console.log(location.hash, 'popstate event');
