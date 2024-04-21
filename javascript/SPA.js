@@ -16,6 +16,7 @@ const spaRouter = {
        //history.replaceState({}, 'logIn', '#logIn');
         window.addEventListener('popstate', spaRouter.poppin);
         spaRouter.showPageFromURL();//display the appropriate page based on the current URL.
+        
     },
     //This method handles navigation when a link is clicked.
     nav: function(ev){
@@ -25,6 +26,9 @@ const spaRouter = {
         document.getElementById(currentPage).classList.add('active');
         console.log(currentPage)
         history.pushState({}, currentPage, `#${currentPage}`);
+        if (location.hash === '#logIn') {
+            location.reload();
+        }
     },
     
     //This method is triggered when the user navigates using the browser's back or forward buttons.
@@ -50,7 +54,11 @@ showPageFromURL: function() {
     let hash = location.hash.replace('#', '');
     let currentPage = hash || 'logIn'; 
     spaRouter.showPage(currentPage);
-    listManager.init(listManager.currentUser);
+    
+    if (currentPage === 'toDolists') {
+        listManager.init(listManager.currentUser);
+    }
+   
 }
 
 };
