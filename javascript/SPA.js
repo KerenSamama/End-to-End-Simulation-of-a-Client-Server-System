@@ -44,6 +44,7 @@ showPageFromURL: function() {
     let hash = location.hash.replace('#', '');
     let currentPage = hash || 'logIn'; // Si aucun hash, afficher la page de connexion par défaut
     spaRouter.showPage(currentPage);
+    listManager.init(listManager.currentUser);
 }
 
 };

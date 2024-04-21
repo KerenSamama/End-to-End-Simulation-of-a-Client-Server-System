@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         e.stopPropagation();
         if(check()){
+            listManager.init(signInUnameInput.value)
             spaRouter.nav(e);
         }
             /*

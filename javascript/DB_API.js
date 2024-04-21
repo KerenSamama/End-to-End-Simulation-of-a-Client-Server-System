@@ -11,6 +11,7 @@ const db = {
             }
         };
         localStorage.setItem(uname, JSON.stringify(userData));
+        return true;
     },
 
     //שליפת נתוני משתמש
@@ -33,6 +34,7 @@ const db = {
         }
         userData.password = pwd;
         localStorage.setItem(uname, JSON.stringify(userData));
+        return true;
     },
 
     //שליפת כל הרשימות
@@ -56,6 +58,7 @@ const db = {
         }
         userData.toDoLists[listName] = [];
         localStorage.setItem(currentUser, JSON.stringify(userData));
+        return true;
     },
 
     //הוספת משימה
@@ -67,6 +70,7 @@ const db = {
         }
         userData.toDoLists[listName].push(text);
         localStorage.setItem(currentUser, JSON.stringify(userData));
+        return true;
     },
 
     //עדכון משימה
@@ -76,8 +80,9 @@ const db = {
             console.error("user or list not found");
             return false;
         }
-        userData.toDoLists[listName][taskNum - 1] = text;
+        userData.toDoLists[listName][taskNum] = text;
         localStorage.setItem(currentUser, JSON.stringify(userData));
+        return true;
 
     },
 
@@ -88,11 +93,12 @@ const db = {
             console.error("user or list not found");
             return false;
         }
-        for (let i = taskNum - 1; i < userData.toDoLists[listName].length; i++) {
-            userData.toDoLists[listName][i] = userData.toDoLists[listName][i + 1];  
+        for (let i = taskNum; i < userData.toDoLists[listName].length; i++) {
+            userData.toDoLists[listName][i] = userData.toDoLists[listName][i];  
         }
         userData.toDoLists[listName].pop();
         localStorage.setItem(currentUser, JSON.stringify(userData));
+        return true;
     }
 
 }

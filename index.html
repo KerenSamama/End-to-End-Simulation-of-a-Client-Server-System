@@ -11,24 +11,20 @@
 
 <body>
     <main>
-        <div class="page active" id="logIn"><!--home=logIn-->
-            <h1>LogIn</h1>
+        <div class="page active log_in" id="logIn">
             <section class="container">
+                
                 <div class="login">
-
-
-                    <form id="form1" data-target="toDolists"><!--verify if we need a form-->
+                    <h1>LogIn</h1>
+            
+                    <form id="form1" data-target="toDolists">
                         <div class="username" id="username">
                             <input type="text" placeholder=" Username" required>
-                            <i class='bx bxs-user'></i>
 
                         </div>
                         <div class="password" id="password">
                             <input type="password" placeholder=" Password">
-                            <i class='bx bxs-lock-alt'></i>
-                        </div>
-                        <div class="remember-forgot">
-                            <label><input id="rememberMe" type="checkbox">Remember Me</label>
+            
                         </div>
                         <div class="forgot-pass">
                             <a href="#">Forgot password?</a>
@@ -38,84 +34,72 @@
                         </div>
 
                     </form>
-                    <!--change -->
-                    <div class="signup"><!-- must change the name-->
+                   
+                    <div class="signup">
                         <span>Don't have an account? <a href="#" data-target="signUp"
                                 class="link signup-link">Signup</a></span>
-                        <!--nav-link=link-->
+                       
                     </div>
                 </div>
 
             </section>
-            <!--
-            <ol>
-                <li><a href="#" data-target="home" class="nav-link">HOME</a></li>
-                <li><a href="#" data-target="list" class="nav-link">LIST</a></li>
-                <li><a href="#" data-target="detail" class="nav-link">DETAIL</a></li>
-            </ol>
-            -->
+           
         </div>
 
-        <div class="page" id="signUp"><!--list=signUp-->
-            <h1>SignUp</h1>
+        <div class="page sign_Up" id="signUp"><!--list=signUp-->
+            
             <section class="container"><!--change to "container"-->
+                
                 <div class="login">
+                    <h1>SignUp</h1>
+                    
                     <form id="form2" data-target="logIn"><!--javscript-->
 
                         <div class="input-box" id="uname"><!--javscript #uname input-->
                             <input type="text" placeholder="Username" required pattern="[A-za-z][A-za-z0-9]*">
-                            <span class="mssg">format: [A-za-z][A-za-z0-9]*</span>
-                            <i class='bx bxs-user'></i>
+
+                           
                         </div>
 
                         <div class="input-box" id="phone"><!--javscript#phone input-->
                             <input type="tel" placeholder="Phone" required minlength="9" maxlength="10" pattern="[0-9]+">
-                            <span class="mssg">characters allowed: 0-9</span>
-                            <i class='bx bxs-phone'></i>
+                        
+                           
                         </div>
 
                         <div class="input-box" id="pass"><!--javscript #pass input-->
                             <input type="password" placeholder="Password" minlength="8" maxlength="12" required>
-                            <span class="mssg">characters allowed: all, no spaces</span>
-                            <i class='bx bxs-lock-alt'></i>
+                            
+                           
                         </div>
-
+                       
+                          
                         <div class="input-box" id="c_pass"> <!--javscript #c_pass input-->
                             <input type="password" placeholder="Confirm Password" minlength="8" required>
-                            <i class='bx bxs-lock-alt'></i>
+                           
                         </div>
 
-                        <div class="remember-forgot">
-                            <label><input id="rememberMe" type="checkbox">Remember
-                                Me</label><!--javscript #rememberMe-->
-                        </div>
+
                         <div class="button_form">
                             <button id="button_form_id_2" type="submit" class="btn" >Sign Up</button>
                         </div>
 
                     </form>
+                    <div class="register-link">
+                        <span>Already has an account? <a href="#" data-target="logIn" class="link">LogIn</a></span>
+                    </div>
                 </div>
             </section>
-            <div class="register-link"><!-- must change the name -->
-                <span>Already has an account? <a href="#" data-target="logIn" class="link">LogIn</a></span>
-            </div>
-
-
-
-            <!--
-                
-            <ol>
-                <li><a href="#" data-target="home" class="nav-link">HOME</a></li>
-                <li><a href="#" data-target="list" class="nav-link">LIST</a></li>
-                <li><a href="#" data-target="detail" class="nav-link">DETAIL</a></li>
-            </ol>
-            -->
+            
         </div>
 
 
         
         <div class="page" id="toDolists"><!--detail=toDoList-->
-            <h1>Your To do lists</h1>
+            <h1 class="h1_page">TO DO LISTS</h1>
+            <a href="#" data-target="logIn" class="link">logOut</a>
+
+
             <!--template of one task -->
             <template id="toDoTask">
                 <li class="one_task">
@@ -125,7 +109,7 @@
             </template>
              
 
-            <template id="list_template">
+            <template id="list_template" >
                 <ol>
 
                 </ol>
@@ -135,29 +119,21 @@
 
             <div class="container">
                 <div class="table">
-                    <h1 class="click_to" id="today">TODAY</h1>
+                    <h1 class="click_to" id="today">Today</h1>
                 </div>
                 <div class="table">
-                    <h1 class="click_to" id="thisWeek">THIS WEEK</h1>
+                    <h1 class="click_to" id="thisWeek">This Week</h1>
                 </div>
                 <div class="table">
-                    <h1 class="click_to" id="other">OTHER</h1>
+                    <h1 class="click_to" id="other">Other</h1>
                 </div>
             </div>
-            <a href="#" data-target="logIn" class="link">logOut</a>
-
-            <!--
-            <ol>
-                <li><a href="#" data-target="home" class="nav-link">HOME</a></li>
-                <li><a href="#" data-target="list" class="nav-link">LIST</a></li>
-                <li><a href="#" data-target="detail" class="nav-link">DETAIL</a></li>
-            </ol>
-            -->
+            
         </div>
 
     </main>
     <script src="../FullStack3/javascript/SPA.js"></script>
-    <script src="../FullStack3/javascript/toDoTask.js"></script>
+    <script src="../FullStack3/javascript/toDoList.js"></script>
     <script src="../FullStack3/javascript/logIn.js"></script>
     <script src="../FullStack3/javascript/signUp.js"></script>
     <script src="../FullStack3/javascript/FAJAX.js"></script>
